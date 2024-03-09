@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Getting and Keeping a Joke"
+permalink: /docs/guide
+---
+
 # icanhazdadjoke REST API
 
 Use this API to get dad jokes from our database.

@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Getting and Keeping a Joke"
+permalink: /docs/guide
+---
+
 # Getting and Keeping a Joke
 
 This guide will show you how to get a random joke, then retrieve it again later as a .png file using multiple endpoints of the API. You can use the same workflow to retrieve jokes as text or json with simple tweaks.
