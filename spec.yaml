@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Dad Joke Search API
+  description: This is a sample description of the Search endpoint for the icanhazdadjoke.com API.
+  version: 1.0.0
+servers:
+  - url: https://icanhazdadjoke.com
+tags:
+  - name: search
+    description: Joke search
+paths:
+  /search:
+    get:
+      tags:
+        - search
+      summary: Search the joke database
+      description: Use this endpoint to get a paged list of jokes which contain a supplied term.
+      operationId: search
+      parameters:
+        - name: term
+          in: query
+          description: Term or phrase to search for in each joke
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultWrapper'
+            text/plain:
+              schema:
+                type: string
+                example: |-
+                  What time did the man go to the dentist? Tooth hurt-y.
+                  What musical instrument is found in the bathroom? A tuba toothpaste.
+            text/html:
+              schema:
+                type: string
+                example: |-
+                  What time did the man go to the dentist? Tooth hurt-y.
+                  What musical instrument is found in the bathroom? A tuba toothpaste.
+components:
+  schemas:
+    ResultWrapper:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          description: The current page number
+        limit:
+          type: integer
+          description: The number of jokes per page
+        next_page:
+          type: integer
+          description: The next page number, if available
+          nullable: true
+        previous_page:
+          type: integer
+          description: The previous page number, if available
+          nullable: true
+        results:
+          type: array
+          description: An array of jokes
+          items:
+            $ref: '#/components/schemas/Joke'
+        search_term:
+          type: string
+          description: The search term used
+        status:
+          type: integer
+          description: The HTTP status code of the response
+        total_jokes:
+          type: integer
+          description: The number of jokes in the database
+        total_pages:
+          type: integer
+          description: The number of pages in the results of the search
+    Joke:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the joke
+        joke:
+          type: string
+          description: The joke text
