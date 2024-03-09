@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Getting and Keeping a Joke"
-permalink: /docs/guide
+title: "API Summary"
+permalink: /docs/general
 ---
 
 # icanhazdadjoke REST API
