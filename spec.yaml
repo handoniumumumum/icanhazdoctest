@@ -23,6 +23,18 @@ paths:
           required: false
           schema:
             type: string
+        - name: page
+          in: query
+          description: The page of results to return
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The number of results to return for each page
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Successful operation
