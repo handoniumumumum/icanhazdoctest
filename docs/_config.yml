@@ -20,9 +20,7 @@
 
 title: ICanHazDadJokeTest
 email: brandonmerrimanosu@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-This is a short manual for the icanhazdadjoke.com API.
-
+description: This is a short manual for the icanhazdadjoke.com API.
 It contains a guide for using its search function (guide.md), an OpenAPI spec of its search endpoint (spec.yaml), and some general information about using the API (summary.md).
 baseurl: "icanhazdoctest" # the subpath of your site, e.g. /blog
 url: "https://handoniumumumum.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
