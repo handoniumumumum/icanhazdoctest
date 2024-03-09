@@ -18,7 +18,7 @@ Code examples are provided using C# and curl commands.
 
 Here's an example of how to get a random joke using the C# `HttpClient` to call our API:
 
-```C#
+```csharp
 public static async Task<string> GetDadJokeAsync()
 {
   string url = "https://icanhazdadjoke.com/";
@@ -36,7 +36,7 @@ Below is the same request formatted as a curl command:
 
 **Step 2:** Look at the response. Here is an example of a random joke response you could receive:
 
-```C#
+```csharp
 {
   "id": "R7UfaahVfFd",
   "joke": "My dog used to chase people on a bike a lot. It got so bad I had to take his bike away.",
@@ -54,7 +54,7 @@ Use the joke's id and add the `.png` file extension as your path parameter follo
 
 Here's an example of how to get a specific joke as a png image using the C# `HttpClient` to call our API:
 
-```C#
+```csharp
 public static async Task GetSpecificDadJokeImageAsync()
 {
   string jokeId = "8USSSfVn3ob";
@@ -96,7 +96,7 @@ This guide will show you how to search for a joke using the REST API endpoint an
 
 ### Code Example
 
-```C#
+```csharp
 public static async Task SearchDadJokesAsync(string searchTerm)
 {
   string url = "https://icanhazdadjoke.com/";
