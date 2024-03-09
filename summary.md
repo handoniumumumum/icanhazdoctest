@@ -6,7 +6,7 @@ You can get a random joke, a specific joke, or you can search for jokes containi
 
 ## What type of responses can the database give me?
 
-You can ask the API for HTML, plain text or .json jokes, as well as .png images of joke text and Slack-compatible .json-formatted jokes.
+You can ask the API for HTML, plain text or .json-formatted jokes, as well as .png images of joke text and Slack-compatible .json-formatted jokes.
 
 ### Random Joke in JSON
 
@@ -35,3 +35,7 @@ Please set the `User-Agent` header when sending requests to the API. This should
 `"User-Agent: My Library (https://github.com/username/repo)"`
 
 `curl -X GET -H "Content-Type: application/json"  https://icanhazdadjoke.com/graphql`
+
+## Authentication
+
+This API doesn't have an authentication requirement.
