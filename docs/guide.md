@@ -1,10 +1,8 @@
 ---
 layout: page
-title: "Getting and Keeping a Joke"
+title: "Tutorial"
 permalink: /docs/guide
 ---
-
-# Getting and Keeping a Joke
 
 This guide will show you how to get a random joke, then retrieve it again later as a .png file using multiple endpoints of the API. You can use the same workflow to retrieve jokes as text or json with simple tweaks.
 
@@ -16,7 +14,7 @@ Code examples are provided using C# and curl commands.
 
 ### Code Example
 
-Here's an example of how to get a random joke using the C# `HttpClient` to call our API:
+Here's an example of how to get a random joke using the C# `HttpClient` to call their API:
 
 ```csharp
 public static async Task<string> GetDadJokeAsync()
@@ -24,19 +22,21 @@ public static async Task<string> GetDadJokeAsync()
   string url = "https://icanhazdadjoke.com/";
   HttpClient client = new HttpClient();
   client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-  client.DefaultRequestHeaders.Add("User-Agent: Cuyahoga Library (https://cuyahogalibrary.org/)")
+  client.DefaultRequestHeaders.Add("User-Agent: Tutorial User (https://handoniumumumum.github.io/icanhazdoctest/)")
   HttpResponseMessage response = await client.GetAsync(url);
   return response;
 }
 ```
 
-Below is the same request formatted as a curl command:
+Below is the same request, instead formatted as a curl command:
 
-`curl -X GET -H "Content-Type: application/json" -H "User-Agent: Cuyahoga Library (https://cuyahogalibrary.org/)" https://icanhazdadjoke.com/`
+```bash
+curl -X GET -H "Content-Type: application/json" -H "User-Agent: Tutorial User (https://handoniumumumum.github.io/icanhazdoctest/)" https://icanhazdadjoke.com/
+```
 
-**Step 2:** Look at the response. Here is an example of a random joke response you could receive:
+**Step 2:** Look at the response, which should match the formatting below but with a new `joke` and `id`.
 
-```csharp
+```json
 {
   "id": "R7UfaahVfFd",
   "joke": "My dog used to chase people on a bike a lot. It got so bad I had to take his bike away.",
@@ -61,7 +61,7 @@ public static async Task GetSpecificDadJokeImageAsync()
   string fileName = fileName + ".png";
   string url = "https://icanhazdadjoke.com/" + fileName;
   HttpClient client = new HttpClient();
-  client.DefaultRequestHeaders.Add("User-Agent: Cuyahoga Library (https://cuyahogalibrary.org/)")
+  client.DefaultRequestHeaders.Add("User-Agent: Tutorial User (https://handoniumumumum.github.io/icanhazdoctest/)")
 
   // Download the png and save it as a file.
   var imageBytes = await client.GetByteArrayAsync(uri);
@@ -72,7 +72,9 @@ public static async Task GetSpecificDadJokeImageAsync()
 
 Below is the same request, formatted as a curl command:
 
-`curl -X GET -H "User-Agent: Cuyahoga Library (https://cuyahogalibrary.org/)" https://icanhazdadjoke.com/j/<joke_id>.png`
+```bash
+curl -X GET -H "User-Agent: Tutorial User (https://handoniumumumum.github.io/icanhazdoctest/)" https://icanhazdadjoke.com/j/<joke_id>.png`
+```
 
 You can get a text version of this joke from the same endpoint by removing `.png` from the end of the URL.
 
@@ -84,44 +86,51 @@ You can use either the REST API or the GraphQL endpoint.
 
 This guide will show you how to search for a joke using the REST API endpoint and C# code.
 
-**Step 1:** Find the endpoint for the REST API search function, `/search/`. 
-
-`https://icanhazdadjoke.com/search`
+**Step 1:** Find the endpoint for the REST API search function: `https://icanhazdadjoke.com/search`
 
 **Step 2:** Add your search word or phrase as the `term` parameter in the query string of the request URL. In this example, the term parameter is "momentum".
 
-`https://icanhazdadjoke.com/search?term=momentum`
+```
+https://icanhazdadjoke.com/search?term=momentum`
+```
 
 **Step 3:** Send the request to the endpoint, making sure to request `application/json` as the response type so that the joke's id is supplied with any matches.
 
 ### Code Example
 
 ```csharp
-public static async Task SearchDadJokesAsync(string searchTerm)
+public static async Task<string> SearchDadJokesAsync(string searchTerm)
 {
   string url = "https://icanhazdadjoke.com/";
   // Add the query string to the URL
   string urlWithQuery = url + "?term=" + searchTerm
   HttpClient client = new HttpClient();
-  client.DefaultRequestHeaders.Add("User-Agent: Cuyahoga Library (https://cuyahogalibrary.org/)")
+  client.DefaultRequestHeaders.Add("User-Agent: Tutorial User (https://handoniumumumum.github.io/icanhazdoctest/)")
   client.DefaultRequestHeaders.Add("Content-Type: application/json");
-  // Return the response, which will contain a SearchResult object as .json
+  // Return a SearchResult object as json
    HttpResponseMessage response = await client.GetAsync(url);
+   return response;
 }
 ```
 
 Below is the same request, formatted as a curl command.
 
-`curl -X GET -H "Accept: application/json" -H "User-Agent: Cuyahoga Library (https://cuyahogalibrary.org/)" https://icanhazdadjoke.com/search?term=momentum`
+```bash
+curl -X GET -H "Accept: application/json" -H "User-Agent: Tutorial User (https://handoniumumumum.github.io/icanhazdoctest/)" https://icanhazdadjoke.com/search?term=momentum
+```
 
-**Step 4:** The request will return any jokes which have text matching your `term`, along with their id. If you got a result, find the id of the joke you're searching for.
+**Step 4:** The request will return any jokes which have text matching your `term`.
 
-Here is an example response from `search` as json, containing a single result:
+The id will be located in the `results` property of the response with the joke's text. 
 
-`{"current_page":1,"limit":20,"next_page":1,"previous_page":1,"results":[{"id":"8USSSfVn3ob","joke":"I've been trying to come up with a dad joke about momentum . . . but I just can't seem to get it going."}],"search_term":"momentum","status":200,"total_jokes":1,"total_pages":1}`
+Here is an example json response from `/search/`  containing a single result:
 
-The id will be located in the `results` property of the response with the joke's text. In this example, the `id` is `8USSSfVn3ob`.
+```json
+{"current_page":1,"limit":20,"next_page":1,"previous_page":1,"results":[{"id":"8USSSfVn3ob","joke":"I've been trying to come up with a dad joke about momentum . . . but I just can't seem to get it going."}],"search_term":"momentum","status":200,"total_jokes":1,"total_pages":1}
+```
 
 **Step 5:** You can call the `j` endpoint for the joke using its `id`. Here is an example using curl and the joke we just retrieved:
 
-`GET https://icanhazdadjoke.com/j/8USSSfVn3ob`
+```bash
+curl -X GET -H "Accept: application/json" -H "User-Agent: Tutorial User (https://handoniumumumum.github.io/icanhazdoctest/)" https://icanhazdadjoke.com/j/8USSSfVn3ob
+```
