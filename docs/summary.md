@@ -10,6 +10,12 @@ You can get a random joke, a specific joke, or you can search for jokes containi
 
 To test the search endpoint, you can use our [API explorer](https://handoniumumumum.github.io/icanhazdoctest/swagger).
 
+## What is a dad joke?
+
+A dad joke is an obvious pun. Here is an example: "I used to be a banker, but I lost interest."
+
+They are often told by dads, but they *can* be enjoyed by anyone.
+
 ## What type of responses can the database give me?
 
 You can ask the API for HTML, plain text or .json-formatted jokes, as well as .png images of joke text and Slack-compatible json-formatted jokes.

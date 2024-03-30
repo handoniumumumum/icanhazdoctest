@@ -7,13 +7,13 @@ servers:
   - url: https://icanhazdadjoke.com
 tags:
   - name: search
-    description: Joke search
+    description: Search for a joke
 paths:
   /search:
     get:
       tags:
         - search
-      summary: Search the joke database
+      summary: Search the canihazdadjoke database for a joke
       description: Use this endpoint to get a paged list of jokes which contain a supplied term.
       operationId: search
       parameters:
@@ -32,6 +32,12 @@ paths:
         - name: limit
           in: query
           description: The number of results to return for each page
+          required: false
+          schema:
+            type: string
+        - name: user-agent
+          in: header
+          description: Your name and a way to be contacted by the API owners
           required: false
           schema:
             type: string
